@@ -15,12 +15,22 @@ class SQLighter:
         self.cursor = self.connection.cursor()
         self.connection.create_function("REGEXP", 2, self.regexp)
 
-    def insert_data(self, id='', s='', SHcount=''):
+    def insert_data_routers(self, id='', S='', SHcount=''):
         """добавление в базу данных"""
         with self.connection:
             sql = """INSERT INTO routers(id,S,SHcount)
                 VALUES ('%(id)s','%(S)s','%(SHcount)s');
                 """ % {"id": str(id), "S": S, "SHcount": SHcount}
+            if debug == 1: print(sql)
+            self.cursor.execute(sql)
+            self.connection.commit()
+
+    def insert_data_cases(self, NameCase=''):
+        """добавление в базу данных"""
+        with self.connection:
+            sql = """INSERT INTO Cases(NameCaset)
+                VALUES ('%(NameCase)s');
+                """ % {"NameCase": NameCase}
             if debug == 1: print(sql)
             self.cursor.execute(sql)
             self.connection.commit()
