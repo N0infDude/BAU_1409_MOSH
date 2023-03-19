@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="C:\Users\Natalya\Desktop\Desktop\Git_Project\BAU_1409_MOSH\static\css\page2.css" rel="stylesheet">
+    <title>Межпланетный экспресс</title>
+</head>
+
+<body>
+    <header></header>
+    <main>
+        <table class="tablestyle">
+            <caption>Ваше полётное задание</caption>
+            <tr>
+                <td class="iceika">id точки</td>
+                <td class="iceika">Расстояние</td>
+                <td class="iceika">Кол-во SH</td>
+                <td class="iceika">Внести изменения</td>
+                <td class="iceika">Подробности</td>
+            </tr>
+            {% for tr in table %}
+            <tr>
+                <td class="iceika">{{tr.id}}</td>
+                <td class="iceika">{{tr.s}}</td>
+                <td class="iceika">{{tr.kol}}</td>
+                <td class="iceika">{{tr.izm}}</td>
+                <td class="iceika"></td>
+            </tr>
+            {% endfor %}
+        </table>
+        <a href="page3.html"><button class="button_style">Рассчитать</button></a>
+    </main>
+    <footer></footer>
+</body>
+
+</html>
