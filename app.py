@@ -11,8 +11,8 @@ app = Flask(__name__)
 
 
 def uniqid(prefix=''):
-    return prefix + hex(int(time()) * randint(1000, 100000))[2:5] + hex(
-        int(time() * randint(1000000, 2000000)) % 0x100000)[2:5]
+    return prefix + hex(int(time()) * randint(1000, 100000))[2:7] + hex(
+        int(time() * randint(1000000, 2000000)) % 0x100000)[2:7]
 
 @app.route("/index")
 @app.route("/index.html")
@@ -33,7 +33,7 @@ def second():
     if resp.json()['message'] != 'No Token':
         cases = []
         for i in range(len(resp.json()['message'])):
-            cases.append(uniqid(prefix="case"))
+            cases.append(uniqid(prefix="case_"))
         bd = SQLighter(bdName)
         for case in cases:
             bd.insert_data_cases(NameCase=case)
@@ -42,8 +42,7 @@ def second():
             for point in case['points']:
                 print(point)
                 print(cases[indx], point['distance'], point['SH'])
-                bd.insert_data_routers(case=cases[indx],
-                                       S=str(point['distance']),
+                bd.insert_data_routers(S=str(point['distance']),
                                        SHcount=str(point['SH']))
         bd.close()
 

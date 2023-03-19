@@ -18,8 +18,8 @@ class SQLighter:
     def insert_data_routers(self, case='', S='', SHcount=''):
         """добавление в базу данных"""
         with self.connection:
-            sql = """INSERT INTO routers(case,S,SHcount)
-                VALUES ('%(case)s','%(S)s','%(SHcount)s');
+            sql = """INSERT INTO routers(S,SHcount)
+                VALUES ('%(S)s','%(SHcount)s');
                 """ % {"case": case, "S": S, "SHcount": SHcount}
             if debug == 1: print(sql)
             self.cursor.execute(sql)
