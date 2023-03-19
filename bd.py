@@ -15,12 +15,12 @@ class SQLighter:
         self.cursor = self.connection.cursor()
         self.connection.create_function("REGEXP", 2, self.regexp)
 
-    def insert_data_routers(self, id='', S='', SHcount=''):
+    def insert_data_routers(self, case='', S='', SHcount=''):
         """добавление в базу данных"""
         with self.connection:
             sql = """INSERT INTO routers(id,S,SHcount)
-                VALUES ('%(id)s','%(S)s','%(SHcount)s');
-                """ % {"id": str(id), "S": S, "SHcount": SHcount}
+                VALUES ('%(case)s','%(S)s','%(SHcount)s');
+                """ % {"case": str(case), "S": S, "SHcount": SHcount}
             if debug == 1: print(sql)
             self.cursor.execute(sql)
             self.connection.commit()
@@ -34,3 +34,7 @@ class SQLighter:
             if debug == 1: print(sql)
             self.cursor.execute(sql)
             self.connection.commit()
+
+    def close(self):
+        """ Закрываем текущее соединение с БД """
+        self.connection.close()
