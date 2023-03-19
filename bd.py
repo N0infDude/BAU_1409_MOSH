@@ -20,7 +20,7 @@ class SQLighter:
         with self.connection:
             sql = """INSERT INTO routers(id,S,SHcount)
                 VALUES ('%(case)s','%(S)s','%(SHcount)s');
-                """ % {"case": str(case), "S": S, "SHcount": SHcount}
+                """ % {"case": str(case), "S": int(S), "SHcount": int(SHcount)}
             if debug == 1: print(sql)
             self.cursor.execute(sql)
             self.connection.commit()
@@ -28,7 +28,7 @@ class SQLighter:
     def insert_data_cases(self, NameCase=''):
         """добавление в базу данных"""
         with self.connection:
-            sql = """INSERT INTO Cases(NameCaset)
+            sql = """INSERT INTO Cases(NameCase)
                 VALUES ('%(NameCase)s');
                 """ % {"NameCase": NameCase}
             if debug == 1: print(sql)
