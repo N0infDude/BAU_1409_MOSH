@@ -3,6 +3,7 @@ import re
 
 from config import debug
 
+
 class SQLighter:
 
     def regexp(self, expr, item):
@@ -14,12 +15,12 @@ class SQLighter:
         self.cursor = self.connection.cursor()
         self.connection.create_function("REGEXP", 2, self.regexp)
 
-    def insert_data(self, idRoute='', points='', countPoints='', time=''):
+    def insert_data(self, id='', s='', SHcount=''):
         """добавление в базу данных"""
         with self.connection:
-            sql = """INSERT INTO routers(idRoute,points,countPoints,time)
-                VALUES ('%(idRoute)s','%(points)s','%(countPoints)s','%(time)s');
-                """ % {"idRoute": str(idRoute), "points": points, "countPoints": countPoints, "time": time}
+            sql = """INSERT INTO routers(id,S,SHcount)
+                VALUES ('%(id)s','%(S)s','%(SHcount)s');
+                """ % {"id": str(id), "S": S, "SHcount": SHcount}
             if debug == 1: print(sql)
             self.cursor.execute(sql)
             self.connection.commit()
